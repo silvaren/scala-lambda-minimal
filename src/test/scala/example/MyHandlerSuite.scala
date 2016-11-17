@@ -15,6 +15,7 @@ class MyHandlerSuite extends FunSuite {
     val nameInfo = new NameInfo()
     nameInfo.setFirstName("Renato")
     nameInfo.setLastName("Silva")
+
     assert(greeting(nameInfo).body.greeting == "Greetings Renato Silva.")
   }
 
@@ -23,11 +24,16 @@ class MyHandlerSuite extends FunSuite {
     nameInfo.setFirstName("Renato")
     nameInfo.setLastName("Silva")
     val response = greeting(nameInfo)
+
+    // Serialization to JSON as performed by AWS Lambda
     val mapper = new ObjectMapper()
     val out = new StringWriter
     mapper.writeValue(out, response)
     val json = out.toString()
-    val expected = "{\"statusCode\":200,\"headers\":{\"coolheader2\":\"coolvalue2\",\"coolheader\":\"coolvalue\"},\"body\":{\"greeting\":\"Greetings Renato Silva.\"}}"
+
+    val expected = "{\"statusCode\":200,\"headers\":{\"coolheader2\":\"coolvalue2\",\"coolheader\":\"coolvalue\"}," +
+      "\"body\":{\"greeting\":\"Greetings Renato Silva.\"}}"
+    
     assert(json === expected)
   }
 
