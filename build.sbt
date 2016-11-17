@@ -7,7 +7,8 @@ lazy val root = (project in file(".")).
     scalaVersion := "2.11.4",
     retrieveManaged := true,
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test->default",
-    libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+    libraryDependencies += "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13" % "test"
   )
 
 mergeStrategy in assembly := {
