@@ -1,6 +1,17 @@
-name := "scala-lambda-minimal"
+javacOptions := Seq("-source", "1.8", "-target", "1.8", "-Xlint")
 
-version := "1.0"
+lazy val root = (project in file(".")).
+  settings(
+    name := "scala-lambda-minimal",
+    version := "1.0",
+    scalaVersion := "2.11.4",
+    retrieveManaged := true,
+    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test->default",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  )
 
-scalaVersion := "2.12.0"
-    
+mergeStrategy in assembly := {
+    case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+    case x => MergeStrategy.first
+  }
+
