@@ -16,10 +16,10 @@ class MyHandlerSuite extends FunSuite {
     nameInfo.setFirstName("Renato")
     nameInfo.setLastName("Silva")
 
-    assert(greeting(nameInfo).body.greeting == "Greetings Renato Silva.")
+    assert(greeting(nameInfo).greeting == "Greetings Renato Silva.")
   }
 
-  test("greetings response deserializes correctly") {
+  test("greetings response serializes correctly") {
     val nameInfo = new NameInfo()
     nameInfo.setFirstName("Renato")
     nameInfo.setLastName("Silva")
@@ -31,9 +31,8 @@ class MyHandlerSuite extends FunSuite {
     mapper.writeValue(out, response)
     val json = out.toString()
 
-    val expected = "{\"statusCode\":200,\"headers\":{\"coolheader2\":\"coolvalue2\",\"coolheader\":\"coolvalue\"}," +
-      "\"body\":{\"greeting\":\"Greetings Renato Silva.\"}}"
-    
+    val expected = "{\"greeting\":\"Greetings Renato Silva.\"}"
+
     assert(json === expected)
   }
 
