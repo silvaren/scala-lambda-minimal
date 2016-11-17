@@ -4,14 +4,14 @@ lazy val root = (project in file(".")).
   settings(
     name := "scala-lambda-minimal",
     version := "1.0",
-    scalaVersion := "2.11.4",
+    scalaVersion := "2.12.0",
     retrieveManaged := true,
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test->default",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test",
     libraryDependencies += "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13" % "test"
   )
 
-mergeStrategy in assembly := {
+assemblyMergeStrategy in assembly := {
     case PathList("META-INF", xs @ _*) => MergeStrategy.discard
     case x => MergeStrategy.first
   }
